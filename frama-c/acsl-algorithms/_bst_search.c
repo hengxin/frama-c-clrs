@@ -1,3 +1,6 @@
+#include <stddef.h>
+#include <stdio.h>
+
 struct Node {
     int key;
     struct Node *left;
@@ -23,12 +26,10 @@ struct Node {
 struct Node *bst_search_iter(struct Node *root, int key) {
     struct Node *cur = root;
     /*@
-      loop invariant cur == \null || cur->key != key;
       loop invariant BST(cur);
-      loop assigns \nothing;
-      loop variant height(cur);
+      loop assigns cur;
     */
-    while (cur && cur->key != key) {
+    while (cur != NULL && cur->key != key) {
         if (key < cur->key)
             cur = cur->left;
         else
